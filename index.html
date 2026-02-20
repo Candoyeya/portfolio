@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alejandro Estrada – Full Stack Developer</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/AE_favicon_512x512.png">
+  <link rel="apple-touch-icon" href="assets/images/AE_favicon_512x512.png">
+
+  <!-- Tailwind CSS CDN (v3) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+          colors: {
+            bg: {
+              dark:  '#030712',
+              card:  '#1F2937',
+              section: '#111827',
+              tag:   '#374151',
+            },
+            text: {
+              primary:   '#F9FAFB',
+              secondary: '#D1D5DB',
+              muted:     '#4B5563',
+              light:     '#E5E7EB',
+            },
+          },
+          boxShadow: {
+            '2xl-dark': '0px 25px 25px 0px rgba(0,0,0,0.15)',
+            'lg-dark':  '0px 10px 8px 0px rgba(0,0,0,0.04), 0px 4px 3px 0px rgba(0,0,0,0.1)',
+          },
+          letterSpacing: {
+            tight2: '-0.02em',
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Smooth scroll offset for fixed header */
+    [id] { scroll-margin-top: 80px; }
+
+    /* Nav link hover underline */
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: #F9FAFB;
+      transition: width .25s ease;
+    }
+    .nav-link:hover::after { width: 100%; }
+
+    /* Pulse dot */
+    .pulse-dot {
+      width: 8px; height: 8px;
+      background: #10B981;
+      border-radius: 50%;
+      animation: pulse-green 2s infinite;
+    }
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,.5); }
+      50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+    }
+
+    /* Project card image placeholder */
+    .project-img {
+      background: linear-gradient(135deg, #374151 0%, #1F2937 100%);
+    }
+
+    /* Skill icon hover lift */
+    .skill-item { transition: transform .2s ease; }
+    .skill-item:hover { transform: translateY(-4px); }
+
+    /* Copy feedback */
+    .copy-btn.copied { color: #10B981 !important; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #030712; }
+    ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+  </style>
+</head>
+
+<body class="bg-bg-dark text-text-secondary antialiased">
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-bg-dark border-b border-gray-800/60 backdrop-blur-sm">
+    <div class="px-4 md:px-20 py-4">
+      <div class="flex items-center justify-between md:px-8">
+
+        <!-- Logo -->
+        <a href="#hero" class="text-text-primary font-bold text-3xl tracking-tight2 shrink-0">
+          &lt;AE /&gt;
+        </a>
+
+        <!-- Desktop Nav links -->
+        <nav class="hidden md:flex items-center gap-6">
+          <div class="w-px h-6 bg-gray-800"></div>
+
+          <a href="#about"      class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">About</a>
+          <a href="#skills"     class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Skills</a>
+          <a href="#experience" class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Experience</a>
+          <a href="#work"       class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Projects</a>
+          <a href="#contact"    class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Contact</a>
+
+          <div class="w-px h-6 bg-gray-800"></div>
+
+          <a href="assets/Alejandro_Estrada_Hernandez_ATS_EN.pdf"
+             download="Alejandro_Estrada_Hernandez_ATS_EN.pdf"
+             class="inline-flex items-center gap-2 px-4 py-1.5 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors">
+            Download CV
+          </a>
+        </nav>
+
+        <!-- Mobile hamburger button -->
+        <button id="menuOpen" class="md:hidden p-1.5 rounded-lg border border-gray-700 hover:border-gray-400 transition-colors text-text-primary" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MOBILE MENU OVERLAY
+  ============================================================ -->
+  <div id="mobileMenu" class="fixed inset-0 z-[60] pointer-events-none">
+    <!-- Backdrop -->
+    <div id="menuBackdrop" class="absolute inset-0 bg-gray-50/10 backdrop-blur-sm opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Slide-in panel -->
+    <div id="menuPanel" class="absolute right-0 top-0 h-full w-[300px] bg-bg-dark shadow-2xl-dark flex flex-col translate-x-full transition-transform duration-300 ease-in-out">
+
+      <!-- Panel header: logo + close -->
+      <div class="flex items-center justify-between px-4 py-4 border-b border-gray-800">
+        <a href="#hero" class="text-text-primary font-bold text-2xl tracking-tight2" id="menuLogoLink">
+          &lt;AE /&gt;
+        </a>
+        <button id="menuClose" class="p-1.5 rounded-lg border border-gray-700 hover:border-gray-400 transition-colors text-text-primary" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="flex flex-col gap-4 px-4 py-6 border-b border-gray-800">
+        <a href="#about"      class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">About</a>
+        <a href="#skills"     class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Skills</a>
+        <a href="#experience" class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Experience</a>
+        <a href="#work"       class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Projects</a>
+        <a href="#contact"    class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Contact</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="flex flex-col gap-4 px-4 py-6">
+        <a href="assets/Alejandro_Estrada_Hernandez_ATS_EN.pdf"
+           download="Alejandro_Estrada_Hernandez_ATS_EN.pdf"
+           class="flex items-center justify-center w-full px-4 py-2 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors mobile-nav-link">
+          Download CV
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero" class="bg-bg-dark px-4 md:px-20 pt-28 md:pt-36 pb-16 md:pb-24">
+    <div class="flex flex-col-reverse md:flex-row items-center md:items-center gap-12 md:px-8">
+
+      <!-- Left column: text -->
+      <div class="flex flex-col justify-center gap-8 md:gap-12 flex-1 w-full">
+
+        <!-- Heading + description -->
+        <div class="flex flex-col gap-2">
+          <h1 class="text-text-primary font-bold text-4xl md:text-6xl leading-tight tracking-tight2">
+            Hi, I'm Alejandro 👋
+          </h1>
+          <p class="text-text-secondary font-normal text-base leading-relaxed max-w-[768px]">
+            I'm a Full Stack Developer (Front-End focused) with over 8 years of experience
+            delivering web and mobile projects. I specialize in designing exceptional user interfaces, developing
+            robust business logic, and maintaining production systems. I love bringing ideas to life through
+            clean, readable, and highly performant code.
+          </p>
+        </div>
+
+        <!-- Location + availability -->
+        <div class="flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-text-secondary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"/>
+            </svg>
+            <span class="text-text-secondary text-base">Colima, Mexico</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="flex items-center justify-center w-6 h-6">
+              <span class="pulse-dot"></span>
+            </div>
+            <span class="text-text-secondary text-base">Available for new opportunities</span>
+          </div>
+        </div>
+
+        <!-- Social icons -->
+        <div class="flex items-center gap-4">
+          <a href="https://mx.linkedin.com/in/alejandro-estrada-hernandez-15400191" target="_blank" rel="noopener"
+             class="p-2 rounded-lg border border-gray-700 hover:border-gray-400 hover:text-text-primary transition-colors" title="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://github.com/Candoyeya" target="_blank" rel="noopener"
+             class="p-2 rounded-lg border border-gray-700 hover:border-gray-400 hover:text-text-primary transition-colors" title="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17 4.7 18 5 18 5c.6 1.7.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3z"/>
+            </svg>
+          </a>
+          <a href="mailto:telematik_4@hotmail.com"
+             class="p-2 rounded-lg border border-gray-700 hover:border-gray-400 hover:text-text-primary transition-colors" title="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right column – profile picture -->
+      <div class="flex items-center justify-center md:justify-end flex-shrink-0">
+        <div class="relative w-[260px] h-[300px] md:w-[320px] md:h-[360px]">
+          <div class="absolute left-8 top-8 md:left-10 md:top-10 w-[220px] h-[260px] md:w-[280px] md:h-[320px] bg-gray-700 border-[8px] border-bg-dark rounded-2xl"></div>
+          <div class="absolute left-0 top-0 w-[220px] h-[260px] md:w-[280px] md:h-[320px] border-[8px] border-bg-dark rounded-2xl overflow-hidden">
+            <img src="assets/images/Profile/Profile1.jpeg" alt="Alejandro Estrada" class="w-full h-full object-cover object-center">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about" class="bg-bg-section px-4 md:px-20 py-16 md:py-24">
+    <div class="flex flex-col items-center gap-8 md:gap-12 md:px-8">
+
+      <!-- Tag -->
+      <div class="flex justify-center w-full">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">About me</span>
+      </div>
+
+      <!-- Content row -->
+      <div class="flex flex-col md:flex-row gap-12 w-full">
+
+        <!-- Picture -->
+        <div class="flex justify-center md:justify-start md:flex-1">
+          <div class="relative w-[300px] h-[360px] md:w-[440px] md:h-[520px] shrink-0">
+            <div class="absolute left-8 top-0 md:left-10 w-[260px] h-[340px] md:w-[400px] md:h-[480px] bg-bg-tag border-[8px] border-bg-section rounded-2xl"></div>
+            <div class="absolute left-0 top-0 w-[260px] h-[340px] md:w-[400px] md:h-[480px] border-[8px] border-bg-section rounded-2xl overflow-hidden">
+              <img src="assets/images/Profile/Profile2.jpeg" alt="Alejandro Estrada" class="w-full h-full object-cover object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="flex-1 flex flex-col gap-6">
+          <h3 class="text-text-primary font-semibold text-3xl leading-tight tracking-tight2">
+            Curious about me? Here you have it:
+          </h3>
+
+          <div class="flex flex-col gap-4">
+            <p class="text-text-secondary text-base leading-relaxed">
+              I'm a passionate Full Stack Developer specialized in Front-End development with a strong focus on creating
+              exceptional digital experiences. I care deeply about user experience, pixel-perfect design, and writing
+              clean, readable, highly performant code.
+            </p>
+            <p class="text-text-secondary text-base leading-relaxed">
+              My journey as a developer began back in 2013, and since then I've continued to grow and evolve, taking on
+              new challenges and learning the latest technologies along the way. Over 6+ years working professionally,
+              I've delivered 15+ web and mobile projects across industries — from healthcare dashboards and e-commerce
+              platforms to 3D visualization tools and cross-platform mobile apps.
+            </p>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I am very much a progressive thinker and enjoy working on products end to end, from ideation all the way
+              to production deployment. I thrive in remote, English-speaking teams and I'm comfortable owning features
+              from design handoff to ship.
+            </p>
+            <p class="text-text-secondary text-base leading-relaxed">
+              When I'm not in full-on developer mode, you can find me exploring new tech, tinkering with local LLM
+              deployments, or contributing to internal tooling projects.
+            </p>
+            <p class="text-text-secondary text-base leading-relaxed">
+              Finally, some quick bits about me:
+            </p>
+
+            <!-- Checklist -->
+            <div class="grid grid-cols-2 gap-2">
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-green-400">▹</span>
+                  <span class="text-text-secondary text-base">BSc in Computer Engineering</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-green-400">▹</span>
+                  <span class="text-text-secondary text-base">Full Stack Developer (Front-End Focused)</span>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2.5">
+                <div class="flex items-center gap-2">
+                  <span class="text-green-400">▹</span>
+                  <span class="text-text-secondary text-base">Avid learner &amp; problem solver</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="text-green-400">▹</span>
+                  <span class="text-text-secondary text-base">Remote work enthusiast</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="flex flex-col gap-2">
+              <p class="text-text-secondary text-base leading-relaxed font-medium">Languages:</p>
+              <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">🇲🇽</span>
+                  <span class="text-text-secondary text-base">Spanish</span>
+                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium">Native</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">🇺🇸</span>
+                  <span class="text-text-secondary text-base">English</span>
+                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium">Working proficiency</span>
+                  <span class="text-text-muted text-xs italic">(certification pending)</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-text-secondary text-base leading-relaxed">
+              I'm available for freelance or full-time opportunities — feel free to reach out and say hello!
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS
+  ============================================================ -->
+  <section id="skills" class="bg-bg-dark px-4 md:px-20 py-16 md:py-24">
+    <div class="flex flex-col gap-8 md:gap-12 md:px-8">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-4">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Skills</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+          Technologies and tools I've worked with across projects — and can quickly pick up when the job calls for it.
+        </p>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="flex justify-center md:justify-between items-center gap-6 flex-wrap">
+
+        <!-- JavaScript -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+               alt="JavaScript" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">JavaScript</span>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+               alt="TypeScript" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">TypeScript</span>
+        </div>
+
+        <!-- React -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+               alt="React" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">React</span>
+        </div>
+
+        <!-- React Native -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+               alt="React Native" class="w-16 h-16 opacity-80" />
+          <span class="text-text-secondary text-lg text-center">React Native</span>
+        </div>
+
+        <!-- Angular -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"
+               alt="Angular" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Angular</span>
+        </div>
+
+        <!-- Next.js -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+               alt="Next.js" class="w-16 h-16" style="filter: invert(1)" />
+          <span class="text-text-secondary text-lg text-center">Next.js</span>
+        </div>
+
+        <!-- Node.js -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+               alt="Node.js" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Node.js</span>
+        </div>
+
+        <!-- PHP -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+               alt="PHP" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">PHP</span>
+        </div>
+
+      </div>
+
+      <!-- Row 2 -->
+      <div class="flex justify-center md:justify-between items-center gap-6 flex-wrap">
+
+        <!-- Tailwind -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+               alt="Tailwind CSS" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Tailwind</span>
+        </div>
+
+        <!-- SASS -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg"
+               alt="SASS" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">SASS/SCSS</span>
+        </div>
+
+        <!-- MySQL -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+               alt="MySQL" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">MySQL</span>
+        </div>
+
+        <!-- MongoDB -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
+               alt="MongoDB" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">MongoDB</span>
+        </div>
+
+        <!-- Firebase -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+               alt="Firebase" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Firebase</span>
+        </div>
+
+        <!-- AWS -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg"
+               alt="AWS" class="w-16 h-16" style="filter: invert(1)" />
+          <span class="text-text-secondary text-lg text-center">AWS</span>
+        </div>
+
+        <!-- Docker -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+               alt="Docker" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Docker</span>
+        </div>
+
+        <!-- Git -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+               alt="Git" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Git</span>
+        </div>
+
+      </div>
+
+      <!-- Row 3 -->
+      <div class="flex justify-center items-center gap-10 flex-wrap">
+
+        <!-- Three.js -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg"
+               alt="Three.js" class="w-16 h-16" style="filter: invert(1)" />
+          <span class="text-text-secondary text-lg text-center">Three.js</span>
+        </div>
+
+        <!-- GraphQL -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg"
+               alt="GraphQL" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">GraphQL</span>
+        </div>
+
+        <!-- WordPress -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg"
+               alt="WordPress" class="w-16 h-16" style="filter: invert(1)" />
+          <span class="text-text-secondary text-lg text-center">WordPress</span>
+        </div>
+
+        <!-- Redux -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
+               alt="Redux" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Redux</span>
+        </div>
+
+        <!-- Figma -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg"
+               alt="Figma" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Figma</span>
+        </div>
+
+        <!-- Drupal -->
+        <div class="skill-item flex flex-col items-center gap-2 flex-1 min-w-[80px] max-w-[120px]">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/drupal/drupal-original.svg"
+               alt="Drupal" class="w-16 h-16" />
+          <span class="text-text-secondary text-lg text-center">Drupal</span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       EXPERIENCE
+  ============================================================ -->
+  <section id="experience" class="bg-bg-section px-4 md:px-20 py-16 md:py-24">
+    <div class="flex flex-col items-center gap-8 md:gap-12 md:px-8">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-4 w-full">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Experience</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+          Here is a quick summary of my most recent experiences:
+        </p>
+      </div>
+
+      <!-- Experience cards -->
+      <div class="flex flex-col gap-6 w-full max-w-4xl">
+
+        <!-- Card 1: Roomie IT -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <!-- Logo + date row on mobile -->
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/Roomie.png" alt="Roomie IT" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Oct 2025 – Present</span>
+            </div>
+            <!-- Details -->
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Front-End Developer</h4>
+              <p class="text-text-secondary text-sm font-medium">Roomie IT · Remote</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Construction of components and project structure using ReactJS-Vite as a base.
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ State management with Redux and UI styling with Tailwind CSS.
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Building scalable and reusable component libraries from design specifications.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">ReactJS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Vite</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Redux</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Tailwind</span>
+              </div>
+            </div>
+            <!-- Date (desktop only) -->
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Oct 2025 – Present</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Shockoe -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/Shockoe.png" alt="Shockoe" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Jun 2019 – Jun 2025</span>
+            </div>
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Full Stack Software Engineer II</h4>
+              <p class="text-text-secondary text-sm font-medium">Shockoe | Mobile by Design · Remote from Mexico</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Worked on 15+ web and mobile projects for clients and internal tools.
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Maintained legacy systems (Smartbox), built dashboards/admin portals (ThroneLabs, UNOS).
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Developed CMS/e-commerce platforms (USQBC, Foxwoods, Pet Paradise).
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Delivered 3D visualization tools (Breadvan, UNOS) and cross-platform apps (Hy-Vee, Shopmonkey).
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">ReactJS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">React Native</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Angular</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">NodeJS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">PHP</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">AWS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">ThreeJS</span>
+              </div>
+            </div>
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Jun 2019 – Jun 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Creatools -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/Creatools.png" alt="Creatools" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Apr 2019 – Oct 2019</span>
+            </div>
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Jr. Full Stack Developer (Contract)</h4>
+              <p class="text-text-secondary text-sm font-medium">Creatools · Colima, Mexico</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Contributed to the development of a school administration system.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">HTML</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">CodeIgniter</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">MySQL</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">CSS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Bootstrap</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">jQuery</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Git</span>
+              </div>
+            </div>
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Apr 2019 – Oct 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: State Government Administrative Complex -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/GobiernoColima.jpeg" alt="State Government Administrative Complex" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Feb 2019 – Jul 2019</span>
+            </div>
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Jr. Full Stack Developer (Intern)</h4>
+              <p class="text-text-secondary text-sm font-medium">State Government Administrative Complex · Colima, Mexico</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Supported development and maintenance of institutional systems: SIMAVE, SICOP, SIGECOL, SICEL.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">HTML</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">CodeIgniter</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">MySQL</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">CSS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Bootstrap</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">jQuery</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Git</span>
+              </div>
+            </div>
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Feb 2019 – Jul 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: CantaloopMX -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/Cantaloopmx.jpg" alt="CantaloopMX" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Sep 2017 – Dec 2018</span>
+            </div>
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Front-End Developer</h4>
+              <p class="text-text-secondary text-sm font-medium">CantaloopMX · Colima, Mexico</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Developed platforms: e-Transversalidad, Mexico towards equality, Colima en colores.
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Built interactive UIs with ReactJS and managed state with Redux.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">HTML</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">CSS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">ReactJS</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">Redux</span>
+              </div>
+            </div>
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Sep 2017 – Dec 2018</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Surtidora -->
+        <div class="bg-bg-card rounded-xl p-6 md:p-8 shadow-2xl-dark">
+          <div class="flex flex-col md:flex-row md:items-start gap-4 md:gap-12">
+            <div class="flex flex-row md:flex-col items-center md:items-start justify-between md:justify-start gap-3 md:w-[120px] shrink-0">
+              <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
+                <img src="assets/images/jobs/SurtidoraFerretera.png" alt="Surtidora de Ferretería y Materiales" class="w-full h-full object-contain">
+              </div>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Nov 2015 – Aug 2017</span>
+            </div>
+            <div class="flex flex-col gap-4 flex-1">
+              <h4 class="text-text-primary font-semibold text-xl leading-snug">Master Data Admin / In-House Developer</h4>
+              <p class="text-text-secondary text-sm font-medium">Surtidora de Ferretería y Materiales · Tecoman, Colima</p>
+              <div class="flex flex-col gap-1">
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Built internal tools in VB.NET/ASP.NET integrated with SAP Business One.
+                </p>
+                <p class="text-text-secondary text-base leading-relaxed">
+                  ▹ Created reports, dashboards, managed SQL databases, and supported end users.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-1">
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">VB.NET</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">ASP.NET</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">SQL</span>
+                <span class="px-3 py-1 bg-bg-tag rounded-xl text-text-secondary text-xs font-medium">SAP B1</span>
+              </div>
+            </div>
+            <div class="hidden md:block shrink-0">
+              <span class="text-text-light text-base whitespace-nowrap">Nov 2015 – Aug 2017</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROJECTS
+  ============================================================ -->
+  <section id="work" class="bg-bg-dark px-4 md:px-20 py-16 md:py-24">
+    <div class="flex flex-col items-center gap-6 md:px-8">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-4 w-full mb-6">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Projects</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+          A selection of projects I have had the opportunity to work on throughout my career:
+        </p>
+      </div>
+
+      <!-- All projects – most recent first (reverse CV order) -->
+      <div class="flex flex-col gap-6 w-full max-w-6xl">
+
+        <!-- 1: SIGAPI – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/SIGAPI.png" alt="SIGAPI" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">SIGAPI</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a mid-sized cross-functional team at RoomieIT, I'm currently contributing to
+              SIGAPI, an administrative process modeling tool based on BPMN methodology. I work on the
+              interactive diagram editor and viewer using React-Vite and Redux, helping institutions
+              document, visualize, and analyze their business processes.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">React-Vite</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Redux</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Tailwind</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2: Foxwoods – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Foxwoods Resort Casino</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I was part of a small team at Shockoe working on the front-end rebuild of Foxwoods Resort
+              Casino's public website — one of the largest resort casinos in the world. I contributed to
+              developing Twig templates, custom Drupal modules, and Tailwind-powered components for a
+              consistent, high-performance experience for thousands of daily visitors.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Drupal</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Twig</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Tailwind</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">PHP</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Foxwoods.png" alt="Foxwoods Resort Casino" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 3: Shopmonkey Express Lane – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Shopmonkey.png" alt="Shopmonkey Express Lane" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Shopmonkey Express Lane</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I helped build this vehicle intake wizard for automotive
+              shops. I worked on the multi-step form flow with Next.js and contributed to the back-end
+              data layer using Prisma and CockroachDB — collaborating closely with the team to deliver
+              a production-ready, scalable solution for shop owners.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">NextJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">TypeScript</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Prisma</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">CockroachDB</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Tailwind</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Docker</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4: Hy-Vee Fast & Fresh – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Hy-Vee Fast &amp; Fresh</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I was part of a small mobile development team at Shockoe that built this grocery shopping
+              app with scheduled delivery for Hy-Vee, a major Midwest supermarket chain. I contributed
+              to building key screens in React Native and worked on consuming the GraphQL product catalog
+              from the front-end, as well as features related to real-time cart and order scheduling.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">React Native</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">GraphQL</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Firebase</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Fast & Fresh.png" alt="Hy-Vee Fast & Fresh" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 5: UNOS Sienna – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/UNOS - Sienna.png" alt="UNOS Sienna" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">UNOS Sienna (MVP)</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I was the sole developer responsible for both the front-end and back-end of this innovative
+              MVP prototype for UNOS, bringing 3D organ visualization directly into the browser. Using
+              Three.js within an Angular app, I built the 3D viewer and the back-end integration layer —
+              while a separate developer handled the native iOS organ scanner that fed data into the system.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Angular</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ThreeJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">C#</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">MongoDB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6: UNOS RFI – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">UNOS RFI</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I worked on this dynamic form portal built for UNOS,
+              enabling transplant programs to submit detailed program data through complex, multi-step
+              form flows. I contributed to implementing conditional field logic, form state management,
+              and validation for life-critical transplant program assessments.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Angular</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">SASS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">MaterialUI</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/UNOS - RFI.png" alt="UNOS RFI" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 7: UNOS Organ Tracker – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/UNOS - Organ Tracker.png" alt="UNOS Organ Tracker" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">UNOS Organ Tracker</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I contributed to building this mission-critical dashboard
+              used by UNOS (United Network for Organ Sharing) to track organ transplant logistics in real
+              time. I worked on data visualization components and real-time status interfaces that healthcare
+              professionals rely on to coordinate organ allocation across the country.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Angular</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">TypeScript</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">SASS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">MaterialUI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8: Daycon – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Daycon</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I provided support and maintenance for the WordPress-based admin portal of Daycon, a
+              construction company. My work focused on resolving bugs, addressing legacy JavaScript
+              conflicts, and delivering small feature updates — keeping the platform stable and functional.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">PHP</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">JavaScript</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">jQuery</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Daycon.png" alt="Daycon" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 9: Activation Capital – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Activation Capital.png" alt="Activation Capital" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Activation Capital</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I helped integrate Strapi as a headless CMS for Activation
+              Capital, a business development organization. I worked on the ReactJS front-end connected to
+              Strapi's REST API, enabling the marketing team to manage page content and announcements
+              independently without developer involvement.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ReactJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Strapi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10: Pet Paradise – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Pet Paradise App / Web</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I participated in both the web and mobile development efforts for this reservation platform
+              for Pet Paradise, a national pet care services chain. As part of the team, I contributed to
+              features across both platforms — including booking flows and user portal components — using
+              React Native for mobile and ReactJS for the web version.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ReactJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">React Native</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Redux</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/PetParadiseWeb.png" alt="Pet Paradise" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 11: Breadvan – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Breadvan.png" alt="Breadvan" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Breadvan</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I contributed to the front-end of this SaaS platform for
+              3D object management. I worked on the component structure, helped implement the interactive
+              Three.js viewer with scene controls, and contributed to the state management layer — enabling
+              users to upload, transform, and inspect 3D models in the browser.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ReactJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Redux Toolkit</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ThreeJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">FluentUI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12: Brandefy – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Brandefy App</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I acted as the technical lead for a Spanish-speaking development sub-team, coordinating
+              efforts to port this beauty shopping app from iOS to Android using React Native. Beyond
+              leading the team, I personally contributed to solving key platform-specific challenges —
+              resolving rendering and navigation issues to achieve a successful Play Store release.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">React Native</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Firebase</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Brandefy.png" alt="Brandefy" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 13: ThroneLabs – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/ThroneLabs.png" alt="ThroneLabs" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">ThroneLabs</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              As part of a small team at Shockoe, I contributed to both the admin web dashboard and the
+              React Native companion app for ThroneLabs, a facility management platform for real-time
+              restroom occupancy tracking. I worked on role-based access views, live status indicators,
+              and data sync between the mobile and web clients.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">ReactJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">React Native</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">FluentUI</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 14: MiAlmacenero – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">MiAlmacenero</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I provided updates and front-end support for MiAlmacenero, a social platform that connects
+              consumers with local neighborhood stores. My involvement included improvements to the store
+              locator, contact forms, and general front-end maintenance — helping keep the site functional
+              and up to date for its users.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">HTML</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">JavaScript</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">jQuery</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/MiAlmacenero.png" alt="MiAlmacenero" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 15: PineCove – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/PineCove.png" alt="PineCove" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">PineCove</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I was the sole developer responsible for building this single-page application for PineCove
+              summer camp, enabling parents to access their children's photos and videos securely. I
+              integrated AWS S3 for scalable media delivery and built a clean, intuitive UI designed to
+              be frictionless for non-technical users.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">HTML</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">JavaScript</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">jQuery</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">AWS S3</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 16: USQBC – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">USQBC Portal</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I served as the technical lead for a Spanish-speaking development sub-team on this
+              WordPress-based informational portal for the US-Qatar Business Council. In addition to
+              coordinating the team's work, I personally contributed to building custom themes and
+              plugins, ensuring the CMS was accessible for non-technical content editors.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">WordPress</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">PHP</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">CSS</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/USQBC.png" alt="USQBC Portal" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+        <!-- 17: Smartbox – image LEFT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-r border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Smartbox.png" alt="Smartbox" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Smartbox</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I was the sole developer responsible for maintaining and evolving this legacy platform over
+              several years at Shockoe. I performed a PHP 8 migration, refactored critical modules, and
+              resolved longstanding bugs — keeping a 10-year-old production system stable and functional.
+              I also continued supporting the platform for 6 months after my contract ended, until the
+              project was eventually deprecated.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">PHP 8</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">NodeJS</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">SQL</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">AWS (RDS, EC2, S3)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 18: Misati – image RIGHT -->
+        <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
+          <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
+            <h4 class="text-text-primary font-semibold text-xl">Misati</h4>
+            <p class="text-text-secondary text-base leading-relaxed">
+              I worked on the front-end of Misati's corporate website as part of a small team, contributing
+              to the rebuild of a dated web presence into a clean, brand-aligned experience. I built Angular
+              components backed by an SQL data layer and used SASS to deliver a consistent visual identity
+              across all pages.
+            </p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Angular</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">SQL</span>
+              <span class="px-4 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">SASS</span>
+            </div>
+          </div>
+          <div class="w-full h-48 md:w-[42%] md:h-auto shrink-0 bg-bg-tag md:border-l border-b md:border-b-0 border-gray-700/40 flex items-center justify-center p-4 md:p-10 order-first md:order-last">
+            <div class="w-full h-full md:h-56 project-img rounded-xl overflow-hidden">
+              <img src="assets/images/projects/Misati.png" alt="Misati" class="w-full h-full object-fill object-center">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT ME
+  ============================================================ -->
+  <section id="contact" class="bg-bg-dark px-4 md:px-20 py-16 md:py-24">
+    <div class="flex flex-col items-center gap-8 md:gap-12 md:px-8">
+
+      <!-- Header -->
+      <div class="flex flex-col items-center gap-4 w-full">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Get in touch</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center max-w-2xl">
+          What's next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.
+        </p>
+      </div>
+
+      <!-- Contact info -->
+      <div class="flex flex-col items-center gap-4 w-full">
+
+        <!-- Email -->
+        <div class="flex items-center gap-3 md:gap-5 w-full justify-center">
+          <!-- inbox icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-8 md:h-8 text-text-primary shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0H4m4 0l4 4 4-4"/>
+          </svg>
+          <span class="text-text-primary font-semibold text-xl md:text-4xl tracking-tight2 break-all md:break-normal">telematik_4@hotmail.com</span>
+          <button id="copyEmail" class="copy-btn p-2 rounded-lg border border-gray-700 hover:border-gray-400 transition-colors shrink-0" title="Copy email">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Phone / WhatsApp -->
+        <div class="flex items-center gap-3 md:gap-5 w-full justify-center">
+          <!-- WhatsApp icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 md:w-8 md:h-8 text-green-400 shrink-0" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          <a href="https://wa.me/523121311383" target="_blank" rel="noopener"
+             class="text-text-primary font-semibold text-xl md:text-4xl tracking-tight2 hover:text-green-400 transition-colors">
+            +52 312 131 1383
+          </a>
+          <button id="copyPhone" class="copy-btn p-2 rounded-lg border border-gray-700 hover:border-gray-400 transition-colors shrink-0" title="Copy phone">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 md:w-6 md:h-6 text-text-secondary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Social platforms -->
+      <div class="flex flex-col items-center gap-2">
+        <p class="text-text-secondary text-base">You may also find me on these platforms!</p>
+        <div class="flex items-center gap-6 mt-2">
+
+          <!-- LinkedIn -->
+          <a href="https://mx.linkedin.com/in/alejandro-estrada-hernandez-15400191" target="_blank" rel="noopener"
+             class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <!-- GitHub -->
+          <a href="https://github.com/Candoyeya" target="_blank" rel="noopener"
+             class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 .3a12 12 0 00-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.7 2.6 1.2 3.2.9.1-.7.4-1.2.7-1.5-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2 0-.4-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 016 0C17 4.7 18 5 18 5c.6 1.7.2 2.8.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0012 .3z"/>
+            </svg>
+            GitHub
+          </a>
+
+          <!-- Email -->
+          <a href="mailto:telematik_4@hotmail.com"
+             class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            Email
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="bg-bg-section px-4 md:px-20 py-6">
+    <div class="flex flex-col items-center gap-1 md:px-8">
+      <div class="flex items-center gap-2">
+        <!-- copyright icon -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-text-muted" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 9.354A4 4 0 1013 17"/>
+        </svg>
+        <p class="text-text-muted text-sm leading-snug">
+          2025 | Design by
+          <a href="https://www.figma.com/community/file/1100794861710979393"
+             target="_blank" rel="noopener"
+             class="underline hover:text-text-secondary transition-colors">Sagar Shah</a>
+          &nbsp;·&nbsp; Built by <span class="text-text-secondary font-medium">Alejandro Estrada Hernandez</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script src="main.js"></script>
+
+</body>
+</html>
