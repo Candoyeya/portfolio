@@ -6,6 +6,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   /* -------------------------------------------------------
+     ANALYTICS HELPER – push events to GTM dataLayer
+  ------------------------------------------------------- */
+  window.dataLayer = window.dataLayer || [];
+
+  function trackEvent(eventName, params) {
+    window.dataLayer.push({ event: eventName, ...params });
+  }
+
+
+  /* -------------------------------------------------------
      1. STICKY HEADER – add shadow on scroll
   ------------------------------------------------------- */
   const header = document.getElementById('header');
@@ -55,6 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!btn) return;
 
     btn.addEventListener('click', async () => {
+      // Track copy action
+      trackEvent(btnId === 'copyEmail' ? 'copy_email' : 'copy_phone', {
+        method: 'click',
+      });
+
       try {
         await navigator.clipboard.writeText(textToCopy);
         btn.classList.add('copied');
@@ -107,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBackdrop.classList.add('opacity-100');
     menuPanel.classList.remove('translate-x-full');
     document.body.style.overflow = 'hidden';
+    trackEvent('mobile_menu_open', {});
   }
 
   function closeMenu() {
@@ -197,5 +213,75 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
 
   revealTargets.forEach(el => revealObserver2.observe(el));
+
+
+  /* -------------------------------------------------------
+     8. SECTION VIEW TRACKING – fire event when section enters viewport
+  ------------------------------------------------------- */
+  const sectionNames = {
+    hero:       'Hero',
+    about:      'About',
+    skills:     'Skills',
+    experience: 'Experience',
+    work:       'Projects',
+    contact:    'Contact',
+  };
+
+  const sectionTrackObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        if (sectionNames[id]) {
+          trackEvent('section_view', { section_name: sectionNames[id] });
+        }
+        sectionTrackObserver.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -40% 0px', threshold: 0.1 });
+
+  document.querySelectorAll('section[id], header[id]').forEach(el => {
+    sectionTrackObserver.observe(el);
+  });
+
+
+  /* -------------------------------------------------------
+     9. NAV CLICK TRACKING – desktop & mobile nav links
+  ------------------------------------------------------- */
+  document.querySelectorAll('nav a[href^="#"], .mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      const isMobile = link.classList.contains('mobile-nav-link');
+      trackEvent('nav_click', {
+        link_destination: link.getAttribute('href'),
+        device_type: isMobile ? 'mobile' : 'desktop',
+      });
+    });
+  });
+
+
+  /* -------------------------------------------------------
+     10. CTA BUTTON TRACKING – Download CV & social links
+  ------------------------------------------------------- */
+  // Download CV (all instances: header desktop, header mobile, about section)
+  document.querySelectorAll('a[href*=".pdf"]').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('download_cv', {});
+    });
+  });
+
+  // Social / contact links
+  const socialLinks = [
+    { selector: 'a[href*="linkedin.com"]', platform: 'LinkedIn'  },
+    { selector: 'a[href*="github.com"]',   platform: 'GitHub'    },
+    { selector: 'a[href*="wa.me"]',        platform: 'WhatsApp'  },
+    { selector: 'a[href^="mailto:"]',      platform: 'Email'     },
+  ];
+
+  socialLinks.forEach(({ selector, platform }) => {
+    document.querySelectorAll(selector).forEach(link => {
+      link.addEventListener('click', () => {
+        trackEvent('social_click', { platform });
+      });
+    });
+  });
 
 });
