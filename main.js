@@ -268,6 +268,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Project links
+  document.querySelectorAll('.project-link').forEach(link => {
+    link.addEventListener('click', () => {
+      trackEvent('project_link_click', {
+        project_name: link.dataset.project,
+        link_type: link.dataset.linkType,
+      });
+    });
+  });
+
   // Social / contact links
   const socialLinks = [
     { selector: 'a[href*="linkedin.com"]', platform: 'LinkedIn'  },
