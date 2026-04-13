@@ -132,19 +132,26 @@
         <nav class="hidden md:flex items-center gap-6">
           <div class="w-px h-6 bg-gray-800"></div>
 
-          <a href="#about"      class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">About</a>
-          <a href="#skills"     class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Skills</a>
-          <a href="#experience" class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Experience</a>
-          <a href="#work"       class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Projects</a>
-          <a href="#contact"    class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors">Contact</a>
+          <a href="#about"      class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors" data-i18n="nav_about">About</a>
+          <a href="#skills"     class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors" data-i18n="nav_skills">Skills</a>
+          <a href="#experience" class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors" data-i18n="nav_experience">Experience</a>
+          <a href="#work"       class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors" data-i18n="nav_projects">Projects</a>
+          <a href="#contact"    class="nav-link text-text-secondary font-medium text-base hover:text-text-primary transition-colors" data-i18n="nav_contact">Contact</a>
 
           <div class="w-px h-6 bg-gray-800"></div>
 
           <a href="assets/Alejandro_Estrada_Hernandez_ATS_EN.pdf"
              download="Alejandro_Estrada_Hernandez_ATS_EN.pdf"
-             class="inline-flex items-center gap-2 px-4 py-1.5 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors">
+             class="inline-flex items-center gap-2 px-4 py-1.5 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors"
+             data-i18n="nav_download_cv">
             Download CV
           </a>
+
+          <button id="langToggle"
+            class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-gray-700 hover:border-gray-400 text-text-secondary hover:text-text-primary font-medium text-sm transition-colors"
+            aria-label="Toggle language">
+            🇲🇽 ES
+          </button>
         </nav>
 
         <!-- Mobile hamburger button -->
@@ -182,20 +189,26 @@
 
       <!-- Nav links -->
       <nav class="flex flex-col gap-4 px-4 py-6 border-b border-gray-800">
-        <a href="#about"      class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">About</a>
-        <a href="#skills"     class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Skills</a>
-        <a href="#experience" class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Experience</a>
-        <a href="#work"       class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Projects</a>
-        <a href="#contact"    class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link">Contact</a>
+        <a href="#about"      class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link" data-i18n="nav_about">About</a>
+        <a href="#skills"     class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link" data-i18n="nav_skills">Skills</a>
+        <a href="#experience" class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link" data-i18n="nav_experience">Experience</a>
+        <a href="#work"       class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link" data-i18n="nav_projects">Projects</a>
+        <a href="#contact"    class="text-text-secondary font-medium text-base text-center hover:text-text-primary transition-colors mobile-nav-link" data-i18n="nav_contact">Contact</a>
       </nav>
 
       <!-- Actions -->
       <div class="flex flex-col gap-4 px-4 py-6">
         <a href="assets/Alejandro_Estrada_Hernandez_ATS_EN.pdf"
            download="Alejandro_Estrada_Hernandez_ATS_EN.pdf"
-           class="flex items-center justify-center w-full px-4 py-2 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors mobile-nav-link">
+           class="flex items-center justify-center w-full px-4 py-2 bg-text-primary text-gray-900 font-medium text-base rounded-xl hover:bg-gray-200 transition-colors mobile-nav-link"
+           data-i18n="nav_download_cv">
           Download CV
         </a>
+        <button id="langToggleMobile"
+          class="flex items-center justify-center gap-2 w-full px-4 py-2 rounded-xl border border-gray-700 hover:border-gray-400 text-text-secondary hover:text-text-primary font-medium text-base transition-colors"
+          aria-label="Toggle language">
+          🇲🇽 ES
+        </button>
       </div>
 
     </div>
@@ -213,10 +226,10 @@
 
         <!-- Heading + description -->
         <div class="flex flex-col gap-2">
-          <h1 class="text-text-primary font-bold text-4xl md:text-6xl leading-tight tracking-tight2">
+          <h1 class="text-text-primary font-bold text-4xl md:text-6xl leading-tight tracking-tight2" data-i18n="hero_greeting">
             Hi, I'm Alejandro 👋
           </h1>
-          <p class="text-text-secondary font-normal text-base leading-relaxed max-w-[768px]">
+          <p class="text-text-secondary font-normal text-base leading-relaxed max-w-[768px]" data-i18n="hero_desc">
             I'm a Full Stack Developer (Front-End focused) with over 8 years of experience
             delivering web and mobile projects. I specialize in designing exceptional user interfaces, developing
             robust business logic, and maintaining production systems. I love bringing ideas to life through
@@ -236,7 +249,7 @@
             <div class="flex items-center justify-center w-6 h-6">
               <span class="pulse-dot"></span>
             </div>
-            <span class="text-text-secondary text-base">Available for new opportunities</span>
+            <span class="text-text-secondary text-base" data-i18n="hero_available">Available for new opportunities</span>
           </div>
         </div>
 
@@ -286,7 +299,7 @@
 
       <!-- Tag -->
       <div class="flex justify-center w-full">
-        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">About me</span>
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium" data-i18n="about_tag">About me</span>
       </div>
 
       <!-- Content row -->
@@ -304,32 +317,32 @@
 
         <!-- Text -->
         <div class="flex-1 flex flex-col gap-6">
-          <h3 class="text-text-primary font-semibold text-3xl leading-tight tracking-tight2">
+          <h3 class="text-text-primary font-semibold text-3xl leading-tight tracking-tight2" data-i18n="about_heading">
             Curious about me? Here you have it:
           </h3>
 
           <div class="flex flex-col gap-4">
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_p1">
               I'm a passionate Full Stack Developer specialized in Front-End development with a strong focus on creating
               exceptional digital experiences. I care deeply about user experience, pixel-perfect design, and writing
               clean, readable, highly performant code.
             </p>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_p2">
               My journey as a developer began back in 2013, and since then I've continued to grow and evolve, taking on
               new challenges and learning the latest technologies along the way. Over 6+ years working professionally,
               I've delivered 15+ web and mobile projects across industries — from healthcare dashboards and e-commerce
               platforms to 3D visualization tools and cross-platform mobile apps.
             </p>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_p3">
               I am very much a progressive thinker and enjoy working on products end to end, from ideation all the way
               to production deployment. I thrive in remote, English-speaking teams and I'm comfortable owning features
               from design handoff to ship.
             </p>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_p4">
               When I'm not in full-on developer mode, you can find me exploring new tech, tinkering with local LLM
               deployments, or contributing to internal tooling projects.
             </p>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_p5">
               Finally, some quick bits about me:
             </p>
 
@@ -338,44 +351,44 @@
               <div class="flex flex-col gap-2.5">
                 <div class="flex items-center gap-2">
                   <span class="text-green-400">▹</span>
-                  <span class="text-text-secondary text-base">BSc in Computer Engineering</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_check1">BSc in Computer Engineering</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="text-green-400">▹</span>
-                  <span class="text-text-secondary text-base">Full Stack Developer (Front-End Focused)</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_check2">Full Stack Developer (Front-End Focused)</span>
                 </div>
               </div>
               <div class="flex flex-col gap-2.5">
                 <div class="flex items-center gap-2">
                   <span class="text-green-400">▹</span>
-                  <span class="text-text-secondary text-base">Avid learner &amp; problem solver</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_check3">Avid learner &amp; problem solver</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="text-green-400">▹</span>
-                  <span class="text-text-secondary text-base">Remote work enthusiast</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_check4">Remote work enthusiast</span>
                 </div>
               </div>
             </div>
 
             <!-- Languages -->
             <div class="flex flex-col gap-2">
-              <p class="text-text-secondary text-base leading-relaxed font-medium">Languages:</p>
+              <p class="text-text-secondary text-base leading-relaxed font-medium" data-i18n="about_languages_label">Languages:</p>
               <div class="flex flex-col gap-2">
                 <div class="flex items-center gap-3">
                   <span class="text-xl">🇲🇽</span>
-                  <span class="text-text-secondary text-base">Spanish</span>
-                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium">Native</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_lang_es">Spanish</span>
+                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium" data-i18n="about_lang_es_level">Native</span>
                 </div>
                 <div class="flex items-center gap-3">
                   <span class="text-xl">🇺🇸</span>
-                  <span class="text-text-secondary text-base">English</span>
-                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium">Working proficiency</span>
-                  <span class="text-text-muted text-xs italic">(certification pending)</span>
+                  <span class="text-text-secondary text-base" data-i18n="about_lang_en">English</span>
+                  <span class="px-2 py-0.5 bg-bg-tag rounded-lg text-text-secondary text-xs font-medium" data-i18n="about_lang_en_level">Working proficiency</span>
+                  <span class="text-text-muted text-xs italic" data-i18n="about_lang_en_note">(certification pending)</span>
                 </div>
               </div>
             </div>
 
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="about_cta">
               I'm available for freelance or full-time opportunities — feel free to reach out and say hello!
             </p>
           </div>
@@ -394,8 +407,8 @@
 
       <!-- Header -->
       <div class="flex flex-col items-center gap-4">
-        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Skills</span>
-        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium" data-i18n="skills_tag">Skills</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center" data-i18n="skills_desc">
           Technologies and tools I've worked with across projects — and can quickly pick up when the job calls for it.
         </p>
       </div>
@@ -581,8 +594,8 @@
 
       <!-- Header -->
       <div class="flex flex-col items-center gap-4 w-full">
-        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Experience</span>
-        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium" data-i18n="exp_tag">Experience</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center" data-i18n="exp_desc">
           Here is a quick summary of my most recent experiences:
         </p>
       </div>
@@ -598,20 +611,20 @@
               <div class="w-24 h-16 bg-bg-tag rounded-lg overflow-hidden flex items-center justify-center p-2">
                 <img src="assets/images/jobs/Roomie.png" alt="Roomie IT" class="w-full h-full object-contain">
               </div>
-              <span class="text-text-light text-sm md:hidden whitespace-nowrap">Oct 2025 – Present</span>
+              <span class="text-text-light text-sm md:hidden whitespace-nowrap" data-i18n="exp1_date">Oct 2025 – Present</span>
             </div>
             <!-- Details -->
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Front-End Developer</h4>
-              <p class="text-text-secondary text-sm font-medium">Roomie IT · Remote</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp1_title">Front-End Developer</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp1_subtitle">Roomie IT · Remote</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp1_b1">
                   ▹ Construction of components and project structure using ReactJS-Vite as a base.
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp1_b2">
                   ▹ State management with Redux and UI styling with Tailwind CSS.
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp1_b3">
                   ▹ Building scalable and reusable component libraries from design specifications.
                 </p>
               </div>
@@ -624,7 +637,7 @@
             </div>
             <!-- Date (desktop only) -->
             <div class="hidden md:block shrink-0">
-              <span class="text-text-light text-base whitespace-nowrap">Oct 2025 – Present</span>
+              <span class="text-text-light text-base whitespace-nowrap" data-i18n="exp1_date">Oct 2025 – Present</span>
             </div>
           </div>
         </div>
@@ -639,19 +652,19 @@
               <span class="text-text-light text-sm md:hidden whitespace-nowrap">Jun 2019 – Jun 2025</span>
             </div>
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Full Stack Software Engineer II</h4>
-              <p class="text-text-secondary text-sm font-medium">Shockoe | Mobile by Design · Remote from Mexico</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp2_title">Full Stack Software Engineer II</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp2_subtitle">Shockoe | Mobile by Design · Remote from Mexico</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp2_b1">
                   ▹ Worked on 15+ web and mobile projects for clients and internal tools.
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp2_b2">
                   ▹ Maintained legacy systems (Smartbox), built dashboards/admin portals (ThroneLabs, UNOS).
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp2_b3">
                   ▹ Developed CMS/e-commerce platforms (USQBC, Foxwoods, Pet Paradise).
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp2_b4">
                   ▹ Delivered 3D visualization tools (Breadvan, UNOS) and cross-platform apps (Hy-Vee, Shopmonkey).
                 </p>
               </div>
@@ -681,10 +694,10 @@
               <span class="text-text-light text-sm md:hidden whitespace-nowrap">Apr 2019 – Oct 2019</span>
             </div>
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Jr. Full Stack Developer (Contract)</h4>
-              <p class="text-text-secondary text-sm font-medium">Creatools · Colima, Mexico</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp3_title">Jr. Full Stack Developer (Contract)</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp3_subtitle">Creatools · Colima, Mexico</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp3_b1">
                   ▹ Contributed to the development of a school administration system.
                 </p>
               </div>
@@ -714,10 +727,10 @@
               <span class="text-text-light text-sm md:hidden whitespace-nowrap">Feb 2019 – Jul 2019</span>
             </div>
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Jr. Full Stack Developer (Intern)</h4>
-              <p class="text-text-secondary text-sm font-medium">State Government Administrative Complex · Colima, Mexico</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp4_title">Jr. Full Stack Developer (Intern)</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp4_subtitle">State Government Administrative Complex · Colima, Mexico</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp4_b1">
                   ▹ Supported development and maintenance of institutional systems: SIMAVE, SICOP, SIGECOL, SICEL.
                 </p>
               </div>
@@ -747,13 +760,13 @@
               <span class="text-text-light text-sm md:hidden whitespace-nowrap">Sep 2017 – Dec 2018</span>
             </div>
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Front-End Developer</h4>
-              <p class="text-text-secondary text-sm font-medium">CantaloopMX · Colima, Mexico</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp5_title">Front-End Developer</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp5_subtitle">CantaloopMX · Colima, Mexico</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp5_b1">
                   ▹ Developed platforms: e-Transversalidad, Mexico towards equality, Colima en colores.
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp5_b2">
                   ▹ Built interactive UIs with ReactJS and managed state with Redux.
                 </p>
               </div>
@@ -780,13 +793,13 @@
               <span class="text-text-light text-sm md:hidden whitespace-nowrap">Nov 2015 – Aug 2017</span>
             </div>
             <div class="flex flex-col gap-4 flex-1">
-              <h4 class="text-text-primary font-semibold text-xl leading-snug">Master Data Admin / In-House Developer</h4>
-              <p class="text-text-secondary text-sm font-medium">Surtidora de Ferretería y Materiales · Tecoman, Colima</p>
+              <h4 class="text-text-primary font-semibold text-xl leading-snug" data-i18n="exp6_title">Master Data Admin / In-House Developer</h4>
+              <p class="text-text-secondary text-sm font-medium" data-i18n="exp6_subtitle">Surtidora de Ferretería y Materiales · Tecoman, Colima</p>
               <div class="flex flex-col gap-1">
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp6_b1">
                   ▹ Built internal tools in VB.NET/ASP.NET integrated with SAP Business One.
                 </p>
-                <p class="text-text-secondary text-base leading-relaxed">
+                <p class="text-text-secondary text-base leading-relaxed" data-i18n="exp6_b2">
                   ▹ Created reports, dashboards, managed SQL databases, and supported end users.
                 </p>
               </div>
@@ -816,8 +829,8 @@
 
       <!-- Header -->
       <div class="flex flex-col items-center gap-4 w-full mb-6">
-        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Projects</span>
-        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium" data-i18n="proj_tag">Projects</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center" data-i18n="proj_desc">
           A selection of projects I have had the opportunity to work on throughout my career:
         </p>
       </div>
@@ -834,7 +847,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">SIGAPI</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj1_desc">
               As part of a mid-sized cross-functional team at RoomieIT, I'm currently contributing to
               SIGAPI, an administrative process modeling tool based on BPMN methodology. I work on the
               interactive diagram editor and viewer using React-Vite and Redux, helping institutions
@@ -852,7 +865,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Foxwoods Resort Casino</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj2_desc">
               I was part of a small team at Shockoe working on the front-end rebuild of Foxwoods Resort
               Casino's public website — one of the largest resort casinos in the world. I contributed to
               developing Twig templates, custom Drupal modules, and Tailwind-powered components for a
@@ -871,7 +884,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-                View Website
+                <span data-i18n="btn_view_website">View Website</span>
               </a>
             </div>
           </div>
@@ -891,7 +904,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Shopmonkey Express Lane</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj3_desc">
               As part of a small team at Shockoe, I helped build this vehicle intake wizard for automotive
               shops. I worked on the multi-step form flow with Next.js and contributed to the back-end
               data layer using Prisma and CockroachDB — collaborating closely with the team to deliver
@@ -912,7 +925,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Hy-Vee Fast &amp; Fresh</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj4_desc">
               I was part of a small mobile development team at Shockoe that built this grocery shopping
               app with scheduled delivery for Hy-Vee, a major Midwest supermarket chain. I contributed
               to building key screens in React Native and worked on consuming the GraphQL product catalog
@@ -930,7 +943,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M3.18 23.76a2 2 0 001.96-.22l12.1-6.93-2.84-2.84-11.22 10zm16.7-10.29L17.04 12l2.84-1.47L21.7 12a1.14 1.14 0 010 1.98l-1.82.49zM3.18.24A2 2 0 001 2.22v19.56l11.22-10.1L5.14.46A2 2 0 003.18.24zm10.96 10.92L3.18.24l11.9 6.83-2.94 4.09z"/>
                 </svg>
-                Play Store
+                <span data-i18n="btn_play_store">Play Store</span>
               </a>
             </div>
           </div>
@@ -950,7 +963,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">UNOS Sienna (MVP)</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj5_desc">
               I was the sole developer responsible for both the front-end and back-end of this innovative
               MVP prototype for UNOS, bringing 3D organ visualization directly into the browser. Using
               Three.js within an Angular app, I built the 3D viewer and the back-end integration layer —
@@ -969,7 +982,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">UNOS RFI</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj6_desc">
               As part of a small team at Shockoe, I worked on this dynamic form portal built for UNOS,
               enabling transplant programs to submit detailed program data through complex, multi-step
               form flows. I contributed to implementing conditional field logic, form state management,
@@ -997,7 +1010,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">UNOS Organ Tracker</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj7_desc">
               As part of a small team at Shockoe, I contributed to building this mission-critical dashboard
               used by UNOS (United Network for Organ Sharing) to track organ transplant logistics in real
               time. I worked on data visualization components and real-time status interfaces that healthcare
@@ -1016,7 +1029,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Daycon</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj8_desc">
               I provided support and maintenance for the WordPress-based admin portal of Daycon, a
               construction company. My work focused on resolving bugs, addressing legacy JavaScript
               conflicts, and delivering small feature updates — keeping the platform stable and functional.
@@ -1043,7 +1056,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Activation Capital</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj9_desc">
               As part of a small team at Shockoe, I helped integrate Strapi as a headless CMS for Activation
               Capital, a business development organization. I worked on the ReactJS front-end connected to
               Strapi's REST API, enabling the marketing team to manage page content and announcements
@@ -1060,7 +1073,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Pet Paradise App / Web</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj10_desc">
               I participated in both the web and mobile development efforts for this reservation platform
               for Pet Paradise, a national pet care services chain. As part of the team, I contributed to
               features across both platforms — including booking flows and user portal components — using
@@ -1078,7 +1091,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-                View Website
+                <span data-i18n="btn_view_website">View Website</span>
               </a>
               <a href="https://play.google.com/store/apps/details?id=com.petparadise.app" target="_blank" rel="noopener"
                  class="project-link inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-700 hover:border-gray-400 text-text-secondary hover:text-text-primary text-sm font-medium transition-colors"
@@ -1086,7 +1099,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M3.18 23.76a2 2 0 001.96-.22l12.1-6.93-2.84-2.84-11.22 10zm16.7-10.29L17.04 12l2.84-1.47L21.7 12a1.14 1.14 0 010 1.98l-1.82.49zM3.18.24A2 2 0 001 2.22v19.56l11.22-10.1L5.14.46A2 2 0 003.18.24zm10.96 10.92L3.18.24l11.9 6.83-2.94 4.09z"/>
                 </svg>
-                Play Store
+                <span data-i18n="btn_play_store">Play Store</span>
               </a>
             </div>
           </div>
@@ -1106,7 +1119,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Breadvan</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj11_desc">
               As part of a small team at Shockoe, I contributed to the front-end of this SaaS platform for
               3D object management. I worked on the component structure, helped implement the interactive
               Three.js viewer with scene controls, and contributed to the state management layer — enabling
@@ -1125,7 +1138,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Brandefy App</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj12_desc">
               I acted as the technical lead for a Spanish-speaking development sub-team, coordinating
               efforts to port this beauty shopping app from iOS to Android using React Native. Beyond
               leading the team, I personally contributed to solving key platform-specific challenges —
@@ -1152,7 +1165,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">ThroneLabs</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj13_desc">
               As part of a small team at Shockoe, I contributed to both the admin web dashboard and the
               React Native companion app for ThroneLabs, a facility management platform for real-time
               restroom occupancy tracking. I worked on role-based access views, live status indicators,
@@ -1170,7 +1183,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">MiAlmacenero</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj14_desc">
               I provided updates and front-end support for MiAlmacenero, a social platform that connects
               consumers with local neighborhood stores. My involvement included improvements to the store
               locator, contact forms, and general front-end maintenance — helping keep the site functional
@@ -1188,7 +1201,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-                View Website
+                <span data-i18n="btn_view_website">View Website</span>
               </a>
             </div>
           </div>
@@ -1208,7 +1221,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">PineCove</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj15_desc">
               I was the sole developer responsible for building this single-page application for PineCove
               summer camp, enabling parents to access their children's photos and videos securely. I
               integrated AWS S3 for scalable media delivery and built a clean, intuitive UI designed to
@@ -1227,7 +1240,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">USQBC Portal</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj16_desc">
               I served as the technical lead for a Spanish-speaking development sub-team on this
               WordPress-based informational portal for the US-Qatar Business Council. In addition to
               coordinating the team's work, I personally contributed to building custom themes and
@@ -1255,7 +1268,7 @@
           </div>
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Smartbox</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj17_desc">
               I was the sole developer responsible for maintaining and evolving this legacy platform over
               several years at Shockoe. I performed a PHP 8 migration, refactored critical modules, and
               resolved longstanding bugs — keeping a 10-year-old production system stable and functional.
@@ -1275,7 +1288,7 @@
         <div class="flex flex-col md:flex-row items-stretch bg-bg-card rounded-xl shadow-2xl-dark overflow-hidden">
           <div class="flex flex-col justify-center gap-5 p-6 md:p-10 flex-1">
             <h4 class="text-text-primary font-semibold text-xl">Misati</h4>
-            <p class="text-text-secondary text-base leading-relaxed">
+            <p class="text-text-secondary text-base leading-relaxed" data-i18n="proj18_desc">
               I worked on the front-end of Misati's corporate website as part of a small team, contributing
               to the rebuild of a dated web presence into a clean, brand-aligned experience. I built Angular
               components backed by an SQL data layer and used SASS to deliver a consistent visual identity
@@ -1293,7 +1306,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
                 </svg>
-                View Website
+                <span data-i18n="btn_view_website">View Website</span>
               </a>
             </div>
           </div>
@@ -1317,8 +1330,8 @@
 
       <!-- Header -->
       <div class="flex flex-col items-center gap-4 w-full">
-        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium">Get in touch</span>
-        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center max-w-2xl">
+        <span class="px-5 py-1 bg-bg-tag rounded-xl text-text-secondary text-sm font-medium" data-i18n="contact_tag">Get in touch</span>
+        <p class="text-text-secondary font-normal text-base md:text-xl leading-snug text-center max-w-2xl" data-i18n="contact_desc">
           What's next? Feel free to reach out to me if you're looking for a developer, have a query, or simply want to connect.
         </p>
       </div>
@@ -1364,7 +1377,7 @@
 
       <!-- Social platforms -->
       <div class="flex flex-col items-center gap-2">
-        <p class="text-text-secondary text-base">You may also find me on these platforms!</p>
+        <p class="text-text-secondary text-base" data-i18n="contact_social">You may also find me on these platforms!</p>
         <div class="flex items-center gap-6 mt-2">
 
           <!-- LinkedIn -->
@@ -1414,11 +1427,11 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 9.354A4 4 0 1013 17"/>
         </svg>
         <p class="text-text-muted text-sm leading-snug">
-          2025 | Design by
+          2025 | <span data-i18n="footer_design_by">Design by</span>
           <a href="https://www.figma.com/community/file/1100794861710979393"
              target="_blank" rel="noopener"
              class="underline hover:text-text-secondary transition-colors">Sagar Shah</a>
-          &nbsp;·&nbsp; Built by <span class="text-text-secondary font-medium">Alejandro Estrada Hernandez</span>
+          &nbsp;·&nbsp; <span data-i18n="footer_built_by">Built by</span> <span class="text-text-secondary font-medium">Alejandro Estrada Hernandez</span>
         </p>
       </div>
     </div>
@@ -1428,6 +1441,7 @@
   <!-- ============================================================
        JAVASCRIPT
   ============================================================ -->
+  <script src="i18n.js"></script>
   <script src="main.js"></script>
 
 </body>
